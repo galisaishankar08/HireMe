@@ -2,7 +2,6 @@
 
 # Package Files #
 *.jar
-*.war
 *.ear
 
 # the dist file could make some problems
