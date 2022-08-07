@@ -36,7 +36,7 @@ public class Signin extends HttpServlet {
 		if(UserDao.validate(u)){
 			HttpSession session = request.getSession( );
 			session.setAttribute("username", username);
-	        response.sendRedirect("index.html");
+	        response.sendRedirect("index.jsp");
 	    }
 	    else{
 	        response.sendRedirect("signin.html");
