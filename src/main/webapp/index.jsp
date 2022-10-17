@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="./static/css/index.css">
-    <link rel="shortcut icon" href="./static/css/favicon.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <title>Home</title>
@@ -21,7 +24,7 @@
                 <ul class="nav-items">
                     <li><a href="index.jsp" class="nav-links">Home</a></li>
                     <li><a href="profile.jsp" class="nav-links">Profile</a></li>
-                    <li><a href="signin.html" class="nav-links">Logout</a></li>
+                    <li><a href="signin.jsp" class="nav-links">Logout</a></li>
                 </ul>
             </div>
             <div class="hamburger">

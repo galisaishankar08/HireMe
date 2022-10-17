@@ -48,11 +48,11 @@ public class Save extends HttpServlet {
 		int status = UserDao.save(u);
 		
 		if(status !=0) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("profile.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
 		    dispatcher.include(request, response);
 		}
 		else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
 		    dispatcher.include(request, response);
 		}
 	}

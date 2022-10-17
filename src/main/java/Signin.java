@@ -39,7 +39,7 @@ public class Signin extends HttpServlet {
 	        response.sendRedirect("index.jsp");
 	    }
 	    else{
-	        response.sendRedirect("signin.html");
+	        response.sendRedirect("signin.jsp");
 	    }
 		
 	}

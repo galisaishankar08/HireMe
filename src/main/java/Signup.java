@@ -43,11 +43,11 @@ public class Signup extends HttpServlet {
 		if(status !=0) {
 			HttpSession session = request.getSession( );
 			session.setAttribute("username", username);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
 		    dispatcher.include(request, response);
 		}
 		else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("signup.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
 		    dispatcher.include(request, response);
 		}
 	}
