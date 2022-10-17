@@ -1,7 +1,7 @@
 
 public class User {
 	private int id;
-	private String username,email,password,phonenumber,location,skills;
+	private String username,email,password,name,phonenumber,location,skills;
 	
 	public int getId() {
 	 return id;
@@ -50,5 +50,11 @@ public class User {
 	}
 	public void setSkills(String skills) {
 		 this.skills = skills;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}	
 }

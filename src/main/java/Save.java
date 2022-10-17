@@ -2,7 +2,8 @@
 
 import java.io.IOException;
 
-import javax.servlet.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Signup
+ * Servlet implementation class Save
  */
-@WebServlet("/Signup")
-public class Signup extends HttpServlet {
+@WebServlet("/Save")
+public class Save extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Signup() {
+    public Save() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +30,29 @@ public class Signup extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String phonenumber = request.getParameter("phno");
+		String location = request.getParameter("location");
+		String skills = request.getParameter("skills");
 		
+		HttpSession session=request.getSession(false);  
+        String username=(String)session.getAttribute("username");  
+        
 		User u = new User();
 		u.setUsername(username);
-		u.setEmail(email);
-		u.setPassword(password);
+		u.setName(name);
+		u.setPhoneNumber(phonenumber);
+		u.setLocation(location);
+		u.setSkills(skills);
 		
-		int status = UserDao.register(u);
+		int status = UserDao.save(u);
 		
 		if(status !=0) {
-			HttpSession session = request.getSession( );
-			session.setAttribute("username", username);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("profile.html");
 		    dispatcher.include(request, response);
 		}
 		else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("signup.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("edit.html");
 		    dispatcher.include(request, response);
 		}
 	}

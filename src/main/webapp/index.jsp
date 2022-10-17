@@ -16,11 +16,11 @@
 <body>
     <div class="layout">
         <nav class="navbar">
-            <div class="logo">GSS</div>
+            <div class="logo">Hire Me</div>
             <div class="nav-menu">
                 <ul class="nav-items">
                     <li><a href="index.jsp" class="nav-links">Home</a></li>
-                    <li><a href="profile.html" class="nav-links">Profile</a></li>
+                    <li><a href="profile.jsp" class="nav-links">Profile</a></li>
                     <li><a href="signin.html" class="nav-links">Logout</a></li>
                 </ul>
             </div>
@@ -49,13 +49,17 @@
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <div>
                             <h4>Stipend</h4>
-                            <p>₹ 10000 /month</p> 
+                            <p>10000 /month</p> 
                         </div>
                     </div>
 
                     <div class="location flex">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <h4>Remote</h4> 
+                    </div>
+                    
+                    <div class="apply flex">
+                        <button type="Submit" name="save" class="btn"> Apply </button>
                     </div>
                 </div>
             </div>
@@ -76,13 +80,17 @@
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <div>
                             <h4>Stipend</h4>
-                            <p>₹ 10000 /month</p> 
+                            <p>10000 /month</p> 
                         </div>
                     </div>
 
                     <div class="location flex">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <h4>Remote</h4> 
+                    </div>
+                    
+                    <div class="apply flex">
+                        <button type="Submit" name="save" class="btn"> Apply </button>
                     </div>
                 </div>
             </div>
@@ -103,13 +111,17 @@
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <div>
                             <h4>Stipend</h4>
-                            <p>₹ 12000 /month</p> 
+                            <p>12000 /month</p> 
                         </div>
                     </div>
 
                     <div class="location flex">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <h4>Remote</h4> 
+                    </div>
+                    
+                    <div class="apply flex">
+                        <button type="Submit" name="save" class="btn"> Apply </button>
                     </div>
                 </div>
             </div>
