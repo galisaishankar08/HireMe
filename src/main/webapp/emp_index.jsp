@@ -18,21 +18,12 @@
 <body>
     <header class="layout">
         <nav class="navbar">
-            <div class="logo">GSS</div>
+            <div class="logo">Hire Me</div>
             <div class="nav-menu">
                 <ul class="nav-items">
-                    <li>
-                        <form method="post">
-                            <select id="type" name="type">
-                                <option value="All">All</option>
-                                <option value="location">Location</option>
-                                <option value="skill">Skill</option>
-                            </select>
-                            <input type="text" placeholder="Search" name="key" class="nav-links">
-                        </form>
-                    </li>
-                    <li><a href="emp_index.html" class="nav-links">Home</a></li>
-                    <li><a href="emp_signin.html" class="nav-links">Logout</a></li>
+                    <li><a href="emp_index.jsp" class="nav-links">Home</a></li>
+                    <li><a href="Jobs.jsp" class="nav-links">Jobs</a></li>
+                    <li><a href="emp_signin.jsp" class="nav-links">Logout</a></li>
                 </ul>
             </div>
             <div class="hamburger">
@@ -41,15 +32,41 @@
                 <span class="bar"></span>
             </div>
         </nav>
-
+		<%
+			String emp_username=(String)session.getAttribute("emp_username");
+		%>
         <div class="section">
-            <h2>Hi {{emp_uname}} !</h2>
-
-            {% for i in range(0,n) %}
+            <h2>Hi <% out.print(emp_username);%> !</h2>
+			<%
+			String username=(String)session.getAttribute("emp_username");
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				
+				
+				String sql="select name,email, phno, ulocation,skills,title from applied_jobs where company='"+emp_username+"';";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				
+				String name = null;
+				String email = null;
+				String phno = null;
+				String ulocation = null;
+				String skills = null;
+				String title = null;
+				
+				while (rs.next()){
+					name = rs.getString(1);
+					email = rs.getString(2);
+					phno = rs.getString(3);
+					ulocation = rs.getString(4);
+					skills = rs.getString(5);
+					title = rs.getString(6);
+					%>
                     <div class="e-box">
                         <div class="name flex">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <h3>{{ results[i][3] }}</h3>
+                            <h3><% out.print(name);%></h3>
                         </div>
         
                         <div class="flex">
@@ -57,7 +74,7 @@
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <div>
                                     <h4>Email</h4>
-                                    <p>{{ results[i][2] }}</p> 
+                                    <p><a href="mailto:<%=email%>"><% out.print(email);%></a></p> 
                                 </div>
                             </div>
         
@@ -65,7 +82,7 @@
                                 <i class="fa fa-phone-square" aria-hidden="true"></i>
                                 <div>
                                     <h4>Phone Number</h4>
-                                    <p>{{ results[i][4] }}</p> 
+                                    <p><% out.print(phno);%></p> 
                                 </div>
                             </div>
         
@@ -73,7 +90,7 @@
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 <div>
                                     <h4>Location</h4>
-                                    <p>{{ results[i][5] }}</p> 
+                                    <p><% out.print(ulocation);%></p> 
                                 </div>
                             </div>
         
@@ -81,14 +98,27 @@
                                 <i class="fa fa-code" aria-hidden="true"></i>
                                 <div>
                                     <h4>Skills</h4>
-                                    <p>{{ results[i][6] }}</p> 
+                                    <p><% out.print(skills);%></p> 
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                <div>
+                                    <h4>Job Title</h4>
+                                    <p><% out.print(title);%></p> 
                                 </div>
                             </div>
         
                         </div>
                     </div>   
-            {%endfor%}
-            
+            <%
+				}
+			}
+			catch(Exception e){
+				System.out.println(e);
+		}
+		%>
         </div>
 
     </header>
@@ -122,7 +152,9 @@ body {
     position: relative;
     transition: all 0.3s ease-in-out;
 }
-
+a {
+  color: #ccc;
+}
 .logo {
     color: white;
     font-size: 30px;
@@ -233,6 +265,7 @@ body {
     position: absolute;
     top: 10%;
     left: 5%;
+    overflow-y: auto;
 }
 
 .box {
@@ -264,6 +297,15 @@ body {
     margin: 10px 10px 0px 40px;
   }
 
+  .section{
+  height: 87%;
+  width: 100%;  
+    overflow-y: auto;
+  }
+  .section::-webkit-scrollbar{
+	display: none;
+}
+  
   .section h2{
     color: #03e9f4;
     margin: 20px;

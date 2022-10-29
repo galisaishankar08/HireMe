@@ -10,24 +10,24 @@
     
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
 
-    <title>Employee Login</title>
+    <title>Employer Login</title>
 </head >
 <body >
     <div class="login-box">
-        <h2>Employee Login</h2>
-        <form method="post">
+        <h2>Employer Login</h2>
+        <form action="EmpLogin" method="post">
           <div class="user-box">
-            <input type="text" name="uname" autocomplete="false" required>
+            <input type="text" name="username" autocomplete="false" required>
             <label>Username</label>
           </div>
           <div class="user-box">
-            <input type="password" name="pwd" autocomplete="false" required>
+            <input type="password" name="password" autocomplete="false" required>
             <label>Password</label>
           </div>
           
           <div class="btns flex">
             <button type="Submit" name="save" class="btn"> Submit </button>
-            <a href="signin.html" class="btn"> User Login</a>
+            <a href="signin.jsp" class="btn"> User Login</a>
           </div>
 
         </form>

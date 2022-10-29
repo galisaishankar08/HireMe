@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <title>Edit Profile</title>
+    <title>Create Job</title>
 </head>
 
 <body>
@@ -21,9 +21,9 @@
             <div class="logo">Hire Me</div>
             <div class="nav-menu">
                 <ul class="nav-items">
-                    <li><a href="index.jsp" class="nav-links">Home</a></li>
-                    <li><a href="profile.jsp" class="nav-links">Profile</a></li>
-                    <li><a href="signin.jsp" class="nav-links">Logout</a></li>
+                    <li><a href="emp_index.jsp" class="nav-links">Home</a></li>
+                    <li><a href="Jobs.jsp" class="nav-links">Jobs</a></li>
+                    <li><a href="emp_signin.jsp" class="nav-links">Logout</a></li>
                 </ul>
             </div>
             <div class="hamburger">
@@ -34,25 +34,25 @@
         </nav>
 
         <div class="edit-box">
-            <h2>Edit Profile</h2>
-            <form action="Save" method="post">
+            <h2>Create Job</h2>
+            <form action="Savejob" method="post">
               <div class="user-box">
-                <input type="text" name="name" autocomplete="false" required>
-                <label>Name</label>
+                <input type="text" name="title" autocomplete="false" required>
+                <label>Title</label>
               </div>
               <div class="user-box">
-                <input type="number" name="phno" autocomplete="false" required>
-                <label>Phone Number</label>
+                <input type="number" name="duration" autocomplete="false" required>
+                <label>Duration</label>
+              </div>
+
+              <div class="user-box">
+                <input type="text" name="stipend" autocomplete="false" required>
+                <label>Stipend</label>
               </div>
 
               <div class="user-box">
                 <input type="text" name="location" autocomplete="false" required>
                 <label>Location</label>
-              </div>
-
-              <div class="user-box">
-                <input type="text" name="skills" autocomplete="false" required>
-                <label>skills</label>
               </div>
               
               <div class="btns flex">

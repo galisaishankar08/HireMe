@@ -30,10 +30,10 @@
           
           <div class="btns flex">
             <button type="Submit" name="save" class="btn"> Submit </button>
-            <a href="emp_signin.html" class="btn"> Employee Login</a>
+            <a href="emp_signin.jsp" class="btn"> Employer Login</a>
           </div>
 
-            <p>Not registered yet?  <a href="signup.html" class="signup" style="color: #03e9f4;">Create an Account</a> </p>
+            <p>Not registered yet?  <a href="signup.jsp" class="signup" style="color: #03e9f4;">Create an Account</a> </p>
               
         </form>
       </div>

@@ -21,9 +21,9 @@
             <div class="logo">Hire Me</div>
             <div class="nav-menu">
                 <ul class="nav-items">
-                    <li><a href="index.jsp" class="nav-links">Home</a></li>
-                    <li><a href="profile.jsp" class="nav-links">Profile</a></li>
-                    <li><a href="signin.jsp" class="nav-links">Logout</a></li>
+                    <li><a href="emp_index.jsp" class="nav-links">Home</a></li>
+                    <li><a href="Jobs.jsp" class="nav-links">Jobs</a></li>
+                    <li><a href="emp_signin.jsp" class="nav-links">Logout</a></li>
                 </ul>
             </div>
             <div class="hamburger">
@@ -33,108 +33,41 @@
             </div>
         </nav>
 		
-		
-		<%
-			String username=(String)session.getAttribute("username");
-			try{
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
-				
-				String idsql="select id,email from user where userName='"+username+"'";
-				PreparedStatement ips=con.prepareStatement(idsql);
-				ResultSet irs=ips.executeQuery();
-				
-				int id=0;
-				String email=null;
-				while (irs.next()) {
-					id = irs.getInt(1);
-					email = irs.getString(2);
-					session.setAttribute("id",id);
-					session.setAttribute("email",email);
-					break;
-				}
-				
-				String sql="select * from profile where id=?";
-				PreparedStatement ps=con.prepareStatement(sql);
-				ps.setInt(1,id);
-				ResultSet rs=ps.executeQuery();
-				
-				String name = null;
-				String phno = null;
-				String location = null;
-				String skills = null;
-				while (rs.next()){
-					name = rs.getString(2);
-					session.setAttribute("name",name);
-					phno = rs.getString(3);
-					session.setAttribute("phonenumber",phno);
-					location = rs.getString(4);
-					session.setAttribute("location",location);
-					skills = rs.getString(5);
-					session.setAttribute("skills",skills);
-				}
-			}
-			catch(Exception e){
-				System.out.println(e);
-		}
-		%>
-		
-		<%
-			String uname=(String)session.getAttribute("name");
-			String uemail=(String)session.getAttribute("email");
-			String uphno=(String)session.getAttribute("phonenumber");
-			String uloc=(String)session.getAttribute("location");
-			String uskills=(String)session.getAttribute("skills");
-		%>
-		
-        <div class="profile-box">
-            <h2><% out.print(uname);%></h2>
-
-            <div class="flex">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <h4><% out.print(uemail);%></h4>
-            </div>
-
-            <div class="flex">
-                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                <h4><% out.print(uphno);%></h4>
-            </div>
-
-            <div class="flex">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <h4><% out.print(uloc);%></h4>
-            </div>
-
-            <div class="flex">
-                <i class="fa fa-code" aria-hidden="true"></i>
-                <h4><% out.print(uskills);%></h4>
-            </div>
-            
+	    <div class="profile-box">
             <table id="myTable">
                 <tr class="header">
-                  <th style="width:40%;">Title</th>
-                  <th style="width: 30%;">Status</th>
+                  <th style="width:30%;">Title</th>
+                  <th style="width:40%;">Duration</th>
+                  <th style="width: 40%;">Stipend</th>
+                  <th style="width: 40%;">location</th>
                 </tr>
 		<%
+			String username=(String)session.getAttribute("emp_username");
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
 				
 				
-				String jsql="select title,status from applied_jobs where username=?";
-				PreparedStatement jps=con.prepareStatement(jsql);
-				jps.setString(1,username);
-				ResultSet jrs=jps.executeQuery();
+				String sql="select title,duration,stipend,location from jobs where emp=?";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ps.setString(1,username);
+				ResultSet rs=ps.executeQuery();
 				
 				String title = null;
-				String status = null;
-				while (jrs.next()){
-					title = jrs.getString(1);
-					status = jrs.getString(2);
+				int duration = 0;
+				String stipend = null;
+				String location = null;
+				while (rs.next()){
+					title = rs.getString(1);
+					duration = rs.getInt(2);
+					stipend = rs.getString(3);
+					location = rs.getString(4);
 					%>
 					 <tr>
 	                    <td><% out.print(title);%></td>
-	                    <td><% out.print(status);%></td>
+	                    <td><% out.print(duration);%> months</td>
+	                    <td><% out.print(stipend);%> /month</td>
+	                    <td><% out.print(location);%></td>
 	                </tr>
 					<%
 				}
@@ -145,10 +78,12 @@
 		%>
 		
                 
-         </table>
+               
+                
+            </table>
             
             <div class="flex">    
-                <a href="edit.jsp"> <i class="fa fa-pencil-square" aria-hidden="true"></i>  edit</a>
+                <a href="postajob.jsp"> <i class="fa fa-pencil-square" aria-hidden="true"></i>  Create Job</a>
             </div>
           </div>
 
@@ -326,9 +261,9 @@ table{
 
 .profile-box {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    width: 475px;
+    width: 80%;
     padding: 40px;
     transform: translate(-50%, -50%);
     background: rgba(0,0,0,.5);
@@ -337,13 +272,6 @@ table{
     border-radius: 10px;
   }
   
-  .profile-box h2 {
-    margin: 0 0 30px;
-    padding: 0;
-    text-transform: uppercase;
-    color: #fff;
-    text-align: center;
-  }
 
   i{
     color: #03e9f4;

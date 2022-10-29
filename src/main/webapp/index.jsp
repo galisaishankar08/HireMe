@@ -32,18 +32,40 @@
                 <span class="bar"></span>
             </div>
         </nav>
-
-        <div class="grid">
+	<div class="grid">
+	<%
+			String username=(String)session.getAttribute("username");
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				
+				String sql="select emp, title, duration, stipend, location from jobs";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				
+				String emp = null;
+				String title = null;
+				int duration = 0;
+				String location = null;
+				int stipend = 0;
+				while (rs.next()){
+					emp = rs.getString(1);
+					title = rs.getString(2);
+					duration = rs.getInt(3);
+					stipend = rs.getInt(4);
+					location = rs.getString(5);
+					
+					%>
 
             <div class="box">
-                <h3>Python Web Development</h3>
+                <h3><% out.print(title); %></h3>
                 
                 <div class="flex">
                     <div class="flex">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                         <div>
                             <h4>Duration</h4>
-                            <p>4 Months</p> 
+                            <p><% out.print(duration); %> months</p> 
                         </div>
                     </div>
 
@@ -51,84 +73,37 @@
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <div>
                             <h4>Stipend</h4>
-                            <p>10000 /month</p> 
+                            <p><% out.print(stipend); %> /month</p> 
                         </div>
                     </div>
 
                     <div class="location flex">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h4>Remote</h4> 
+                        <h4><% out.print(location); %></h4> 
                     </div>
                     
-                    <div class="apply flex">
-                        <button type="Submit" name="save" class="btn"> Apply </button>
-                    </div>
+                    <form action="Applyjob" method="post">
+                    	<input name="username" value="<%=username%>" type="hidden">
+                    	<input name="company" value="<%=emp%>" type="hidden">
+                    	<input name="title" value="<%=title%>" type="hidden">
+                    	<input name="duration" value="<%=duration%>" type="hidden">
+                    	<input name="stipend" value="<%=stipend%>" type="hidden">
+                    	<input name="location" value="<%=location%>" type="hidden">
+                    	<input name="status" value="applied" type="hidden">
+	                    <div class="apply flex">
+	                        <button type="Submit" name="save" class="btn"> Apply </button>
+	                    </div>
+                    </form>
                 </div>
-            </div>
-
-            <div class="box">
-                <h3>React, Node.js Development</h3>
-                
-                <div class="flex">
-                    <div class="flex">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <div>
-                            <h4>Duration</h4>
-                            <p>3 Months</p> 
-                        </div>
-                    </div>
-
-                    <div class="flex">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <div>
-                            <h4>Stipend</h4>
-                            <p>10000 /month</p> 
-                        </div>
-                    </div>
-
-                    <div class="location flex">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h4>Remote</h4> 
-                    </div>
-                    
-                    <div class="apply flex">
-                        <button type="Submit" name="save" class="btn"> Apply </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <h3>Mobile App Development</h3>
-                
-                <div class="flex">
-                    <div class="flex">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <div>
-                            <h4>Duration</h4>
-                            <p>6 Months</p> 
-                        </div>
-                    </div>
-
-                    <div class="flex">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <div>
-                            <h4>Stipend</h4>
-                            <p>12000 /month</p> 
-                        </div>
-                    </div>
-
-                    <div class="location flex">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <h4>Remote</h4> 
-                    </div>
-                    
-                    <div class="apply flex">
-                        <button type="Submit" name="save" class="btn"> Apply </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+            </div>		
+					<%
+				}
+			}
+			catch(Exception e){
+				System.out.println(e);
+		}
+		%>
+		</div>
     </div>
 </body>
 
@@ -270,6 +245,12 @@ body {
     position: absolute;
     top: 10%;
     left: 5%;
+    height: 77%;
+  width: 95%;  
+    overflow: auto;
+}
+.grid::-webkit-scrollbar{
+	display: none;
 }
 
 .box {
