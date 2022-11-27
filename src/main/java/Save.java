@@ -34,6 +34,7 @@ public class Save extends HttpServlet {
 		String phonenumber = request.getParameter("phno");
 		String location = request.getParameter("location");
 		String skills = request.getParameter("skills");
+		String resume = request.getParameter("resume");
 		
 		HttpSession session=request.getSession(false);  
         String username=(String)session.getAttribute("username");  
@@ -44,6 +45,7 @@ public class Save extends HttpServlet {
 		u.setPhoneNumber(phonenumber);
 		u.setLocation(location);
 		u.setSkills(skills);
+		u.setResumelink(resume);
 		
 		int status = UserDao.save(u);
 		

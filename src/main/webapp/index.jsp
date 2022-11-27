@@ -37,7 +37,7 @@
 			String username=(String)session.getAttribute("username");
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 				
 				String sql="select emp, title, duration, stipend, location from jobs";
 				PreparedStatement ps=con.prepareStatement(sql);
@@ -89,7 +89,7 @@
                     	<input name="duration" value="<%=duration%>" type="hidden">
                     	<input name="stipend" value="<%=stipend%>" type="hidden">
                     	<input name="location" value="<%=location%>" type="hidden">
-                    	<input name="status" value="applied" type="hidden">
+                    	<input name="status" value="Applied" type="hidden">
 	                    <div class="apply flex">
 	                        <button type="Submit" name="save" class="btn"> Apply </button>
 	                    </div>

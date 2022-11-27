@@ -55,14 +55,15 @@ public class Applyjob extends HttpServlet {
         String ulocation = "";
         String skills = "";
         String email = "";
+        String resume_link = "";
         int id = 0;
         
-        String sql= "INSERT INTO `hireme`.`applied_jobs` (`username`, `title`, `duration`, `stipend`, `location`, `status`, `name`, `phno`, `ulocation`, `skills`, `email`, `company`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql= "INSERT INTO `hire_me`.`applied_jobs` (`username`, `title`, `duration`, `stipend`, `location`, `status`, `name`, `phno`, `ulocation`, `skills`, `email`, `company`, `resumelink`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
         
 		try{
 			int st = 0;
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 			
 			String useremsql = "select id,email from user where username= '"+username+"'";
 			PreparedStatement eups=con.prepareStatement(useremsql);
@@ -81,6 +82,7 @@ public class Applyjob extends HttpServlet {
 				phno = rs.getString(3);
 				ulocation = rs.getString(4);
 				skills = rs.getString(5);
+				resume_link = rs.getNString(6);
 			}
 			
 			PreparedStatement ps=con.prepareStatement(sql);
@@ -97,6 +99,7 @@ public class Applyjob extends HttpServlet {
 			ps.setString(10,skills);
 			ps.setString(11,email);
 			ps.setString(12,company);
+			ps.setString(13,resume_link);
 			   
 			st=ps.executeUpdate();
 			if(st!=0) {

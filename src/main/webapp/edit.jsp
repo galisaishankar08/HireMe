@@ -55,6 +55,11 @@
                 <label>skills</label>
               </div>
               
+              <div class="user-box">
+                <input type="text" name="resume" autocomplete="false" required>
+                <label>Resume Url or LinkedIn profile </label>
+              </div>
+              
               <div class="btns flex">
                 <button type="Submit" name="save" class="btn"> Submit </button>
               </div>

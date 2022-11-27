@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <title>Recruiter Dashboard</title>
+    <title>Selected</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 			String emp_username=(String)session.getAttribute("emp_username");
 		%>
         <div class="section">
-            <h2>Hi <% out.print(emp_username);%> !</h2>
+            <h2>Selected Employees</h2>
 			<%
 			String username=(String)session.getAttribute("emp_username");
 			try{
@@ -68,7 +68,7 @@
 					resume = rs.getString(7);
 					status = rs.getString(8);
 					
-					if(status.equals("Applied")){
+					if(status.equals("Approved")){
 					%>
                     <div class="e-box">
                         <div class="name flex">
@@ -124,22 +124,6 @@
                                     
                                 </div>
                             </div>
-                            
-                            <div class="flex">
-                            	<form action="JobStatus" method="post">
-			                    	<input name="email" value="<%=email%>" type="hidden">
-			                    	<input name="title" value="<%=title%>" type="hidden">
-			                    	<input name="status" value="Approved" type="hidden">
-	                                <button type="Submit" name="save" class="cbtn"> <i class="fa fa-check" aria-hidden="true"></i> </button>
-                                </form>
-                                
-                                <form action="JobStatus" method="post">
-			                    	<input name="email" value="<%=email%>" type="hidden">
-			                    	<input name="title" value="<%=title%>" type="hidden">
-			                    	<input name="status" value="Rejected" type="hidden">
-                                	<button type="Submit" name="save" class="wbtn"> X </button>
-                                </form>
-                            </div>
         
                         </div>
                     </div>   
@@ -149,8 +133,7 @@
 			}
 			catch(Exception e){
 				System.out.println(e);
-		}
-		%>
+		}%>
         </div>
 
     </header>
@@ -344,8 +327,8 @@ a {
   }
 
   .e-box {
-    width: 95%;
-    margin: 30px;
+    width: 85%;
+    margin: 50px;
     padding: 30px;
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
@@ -375,58 +358,7 @@ a {
   
   button{
     background-color: transparent;
-  }
-  
-  .cbtn {
-    position: relative;
-    display: inline-block;
-    padding: 5px 10px;
-    color: #03e9f4;
-    border: 1px solid #03e9f4;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 10px;
-    margin-left: 30px;
-    letter-spacing: 2px;
-  }
-  
-  .wbtn {
-    position: relative;
-    display: inline-block;
-    padding: 5px 10px;
-    color: #FF0000;
-    border: 1px solid #FF0000;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 10px;
-    margin-left: 30px;
-    letter-spacing: 2px;
-  }
-  
-  .cbtn:hover {
-    background: #03e9f4;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-  }
-  
-  .wbtn:hover {
-    background: #FF0000;
-    color: #FF0000;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #FF0000,
-                0 0 25px #FF0000,
-                0 0 50px #FF0000,
-                0 0 100px #FF0000;
-  }
+  } 
+ 
 </style>
 </html>

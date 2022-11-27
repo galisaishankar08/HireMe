@@ -38,7 +38,7 @@
 			String username=(String)session.getAttribute("username");
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 				
 				String idsql="select id,email from user where userName='"+username+"'";
 				PreparedStatement ips=con.prepareStatement(idsql);
@@ -63,6 +63,7 @@
 				String phno = null;
 				String location = null;
 				String skills = null;
+				String resume = null;
 				while (rs.next()){
 					name = rs.getString(2);
 					session.setAttribute("name",name);
@@ -72,6 +73,8 @@
 					session.setAttribute("location",location);
 					skills = rs.getString(5);
 					session.setAttribute("skills",skills);
+					resume = rs.getString("resumelink");
+					session.setAttribute("resumelink",resume);
 				}
 			}
 			catch(Exception e){
@@ -85,6 +88,7 @@
 			String uphno=(String)session.getAttribute("phonenumber");
 			String uloc=(String)session.getAttribute("location");
 			String uskills=(String)session.getAttribute("skills");
+			String uresumelink=(String)session.getAttribute("resumelink");
 		%>
 		
         <div class="profile-box">
@@ -110,24 +114,32 @@
                 <h4><% out.print(uskills);%></h4>
             </div>
             
-            <table id="myTable">
-                <tr class="header">
-                  <th style="width:40%;">Title</th>
-                  <th style="width: 30%;">Status</th>
-                </tr>
+            <div class="flex">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <h4><a href=<%= uresumelink%> target="_blank">Resume</a></h4>
+            </div> 
+            
 		<%
+		String title = null;
+		String status = null;
+
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 				
 				
 				String jsql="select title,status from applied_jobs where username=?";
 				PreparedStatement jps=con.prepareStatement(jsql);
 				jps.setString(1,username);
 				ResultSet jrs=jps.executeQuery();
+				%>
+				<table id="myTable">
+                <tr class="header">
+                  <th style="width:40%;">Title</th>
+                  <th style="width: 30%;">Status</th>
+                </tr>
+				 <%
 				
-				String title = null;
-				String status = null;
 				while (jrs.next()){
 					title = jrs.getString(1);
 					status = jrs.getString(2);
@@ -147,7 +159,7 @@
                 
          </table>
             
-            <div class="flex">    
+            <div class="flex edit">    
                 <a href="edit.jsp"> <i class="fa fa-pencil-square" aria-hidden="true"></i>  edit</a>
             </div>
           </div>
@@ -269,7 +281,7 @@ table{
     background-color:  #243b55;
   }
 
-  table a{
+  a > .edit{
     color: #03e9f4;
   }
 
@@ -360,6 +372,10 @@ table{
   }
 
   .profile-box a{
+    color: #fff;
+  }
+  
+  .edit{
     text-decoration: none;
     padding-left: 10px;
     color: #03e9f4;
@@ -368,6 +384,7 @@ table{
   }
 
   .profile-box a:hover{
+    color: #03e9f4;
     text-decoration: underline;
   }
 </style>

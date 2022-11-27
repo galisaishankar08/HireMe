@@ -10,11 +10,11 @@
     
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
 
-    <title>Employer Login</title>
+    <title>Recruiter Login</title>
 </head >
 <body >
     <div class="login-box">
-        <h2>Employer Login</h2>
+        <h2>Recruiter Login</h2>
         <form action="EmpLogin" method="post">
           <div class="user-box">
             <input type="text" name="username" autocomplete="false" required>

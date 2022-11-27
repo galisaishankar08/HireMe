@@ -19,7 +19,7 @@ public class EmpDao {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -58,7 +58,7 @@ public class EmpDao {
 	
 	public static int savejob(Job j){
 		int status=0;
-		String sql= "INSERT INTO `hireme`.`jobs` (`id`, `emp`, `title`, `duration`, `stipend`, `location`) VALUES (?, ?, ?, ?, ?, ? );";
+		String sql= "INSERT INTO `hire_me`.`jobs` (`id`, `emp`, `title`, `duration`, `stipend`, `location`) VALUES (?, ?, ?, ?, ?, ? );";
 		try{
 			Connection con=UserDao.getConnection();
 			PreparedStatement ps=con.prepareStatement(sql);

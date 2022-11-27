@@ -1,7 +1,7 @@
 
 public class User {
 	private int id;
-	private String username,email,password,name,phonenumber,location,skills;
+	private String username,email,password,name,phonenumber,location,skills,resumelink;
 	
 	public int getId() {
 	 return id;
@@ -56,5 +56,11 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getResumelink() {
+		return resumelink;
+	}
+	public void setResumelink(String resumelink) {
+		this.resumelink = resumelink;
 	}	
 }

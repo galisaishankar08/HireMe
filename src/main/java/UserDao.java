@@ -16,7 +16,7 @@ public class UserDao {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -26,7 +26,7 @@ public class UserDao {
 	
 	public static int register(User u){
 		int status=0;
-		String sql= "INSERT INTO `hireme`.`user` (`username`, `email`, `password`) VALUES (?,?,?);";
+		String sql= "INSERT INTO `hire_me`.`user` (`username`, `email`, `password`) VALUES (?,?,?);";
 		try{
 			Connection con=UserDao.getConnection();
 			PreparedStatement ps=con.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class UserDao {
 	
 	public static int save(User u){
 		int status=0;
-		String sql= "INSERT INTO `hireme`.`profile` (`id`, `name`, `phno`, `location`, `skills`) VALUES (?, ?, ?, ?, ?);";
+		String sql= "INSERT INTO `hire_me`.`profile` (`id`, `name`, `phno`, `location`, `skills`, `resumelink`) VALUES (?, ?, ?, ?, ?, ?);";
 		try{
 			Connection con=UserDao.getConnection();
 			PreparedStatement ps=con.prepareStatement(sql);
@@ -97,6 +97,7 @@ public class UserDao {
 			ps.setString(3,u.getPhoneNumber());
 			ps.setString(4,u.getLocation());
 			ps.setString(5,u.getSkills());
+			ps.setString(6,u.getResumelink());
 			   
 			status=ps.executeUpdate();
 			con.close();

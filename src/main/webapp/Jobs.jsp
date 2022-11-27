@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <title>Profile</title>
+    <title>Jobs</title>
 </head>
 
 <body>
@@ -23,6 +23,7 @@
                 <ul class="nav-items">
                     <li><a href="emp_index.jsp" class="nav-links">Home</a></li>
                     <li><a href="Jobs.jsp" class="nav-links">Jobs</a></li>
+                    <li><a href="selectedpersons.jsp" class="nav-links">Selected</a></li>
                     <li><a href="emp_signin.jsp" class="nav-links">Logout</a></li>
                 </ul>
             </div>
@@ -45,7 +46,7 @@
 			String username=(String)session.getAttribute("emp_username");
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hireme","root","2010030054");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hire_me","root","2010030054");
 				
 				
 				String sql="select title,duration,stipend,location from jobs where emp=?";
